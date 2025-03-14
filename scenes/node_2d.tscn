@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cylvrln6xcdb"]
+
+[ext_resource type="Script" uid="uid://cmn5lejdaa18l" path="res://scripts/Player_Interface.gd" id="1_47ot2"]
+[ext_resource type="PackedScene" uid="uid://dk28f51g0rs0w" path="res://scenes/unit_jeep.tscn" id="1_nogd5"]
+[ext_resource type="Script" uid="uid://duhov3u2f4tv0" path="res://scripts/Map.gd" id="1_wf6le"]
+[ext_resource type="PackedScene" uid="uid://b7rcyeocyevfs" path="res://scenes/ui.tscn" id="4_6thg7"]
+[ext_resource type="PackedScene" uid="uid://c12cjvbes85pm" path="res://scenes/rts_camera.tscn" id="5_ewo4x"]
+[ext_resource type="PackedScene" uid="uid://d14n4d7owe113" path="res://scenes/test_level.tscn" id="6_j7wrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imd0y"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_wf6le")
+
+[node name="Player_Interface" type="Node2D" parent="."]
+position = Vector2(0, 3)
+script = ExtResource("1_47ot2")
+
+[node name="Dragbox" type="ColorRect" parent="Player_Interface"]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.0117647, 0, 0.556863, 0.129412)
+metadata/_edit_use_anchors_ = true
+
+[node name="DragboxArea" type="Area2D" parent="Player_Interface/Dragbox"]
+position = Vector2(0, -3)
+
+[node name="DragboxCollision" type="CollisionShape2D" parent="Player_Interface/Dragbox/DragboxArea"]
+position = Vector2(197, 101)
+shape = SubResource("RectangleShape2D_imd0y")
+
+[node name="Unit_Jeep" parent="." instance=ExtResource("1_nogd5")]
+position = Vector2(516, 335)
+
+[node name="Unit_Jeep2" parent="." instance=ExtResource("1_nogd5")]
+position = Vector2(704, 384)
+
+[node name="RTSCamera" parent="." instance=ExtResource("5_ewo4x")]
+
+[node name="UI" parent="." instance=ExtResource("4_6thg7")]
+
+[node name="test_level" parent="." instance=ExtResource("6_j7wrs")]
+position = Vector2(324, 397)

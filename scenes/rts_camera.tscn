@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c12cjvbes85pm"]
+
+[ext_resource type="Script" uid="uid://bjr2ldg7y2mrk" path="res://scripts/rts_camera.gd" id="1_jdl70"]
+
+[node name="RTSCamera" type="CharacterBody2D"]
+script = ExtResource("1_jdl70")
+
+[node name="Camera2D" type="Camera2D" parent="."]
