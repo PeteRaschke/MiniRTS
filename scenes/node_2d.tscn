@@ -31,7 +31,7 @@ position = Vector2(197, 101)
 shape = SubResource("RectangleShape2D_imd0y")
 
 [node name="Unit_Jeep" parent="." instance=ExtResource("1_nogd5")]
-position = Vector2(516, 335)
+position = Vector2(297, 224)
 
 [node name="Unit_Jeep2" parent="." instance=ExtResource("1_nogd5")]
 position = Vector2(704, 384)
@@ -41,4 +41,4 @@ position = Vector2(704, 384)
 [node name="UI" parent="." instance=ExtResource("4_6thg7")]
 
 [node name="test_level" parent="." instance=ExtResource("6_j7wrs")]
-position = Vector2(324, 397)
+position = Vector2(350, 429)
