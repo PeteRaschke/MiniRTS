@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b2ev5r43xv3oo"]
+
+[node name="Factory" type="Node2D"]
+z_index = 2

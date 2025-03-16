@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://8qiv8whrrn4d"]
+
+[ext_resource type="Texture2D" uid="uid://bugchqnqgmgvo" path="res://art/units/tank_base_spritesheet.png" id="1_dnokx"]
+[ext_resource type="Script" uid="uid://4eyppoa4iqpe" path="res://scripts/unit_tank.gd" id="1_m2syc"]
+[ext_resource type="Script" uid="uid://dbcq58stdfbw6" path="res://scripts/Jeep_Area2D.gd" id="2_m2syc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju6pw"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(169, 0, 169, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5uix"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(0, 0, 169, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fymx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju6pw")
+}],
+"loop": true,
+"name": &"tank_north_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5uix")
+}],
+"loop": true,
+"name": &"tank_north_west",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybent"]
+size = Vector2(168, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stalu"]
+size = Vector2(168, 103)
+
+[node name="unit_tank" type="CharacterBody2D"]
+script = ExtResource("1_m2syc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fymx4")
+animation = &"tank_north_west"
+
+[node name="Tank_Area2D" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("2_m2syc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank_Area2D"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_ybent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_stalu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 30.0
+debug_enabled = true
