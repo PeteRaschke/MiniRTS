@@ -1,19 +1,61 @@
-[gd_scene load_steps=9 format=3 uid="uid://8qiv8whrrn4d"]
+[gd_scene load_steps=16 format=3 uid="uid://8qiv8whrrn4d"]
 
-[ext_resource type="Texture2D" uid="uid://bugchqnqgmgvo" path="res://art/units/tank_base_spritesheet.png" id="1_dnokx"]
+[ext_resource type="Texture2D" uid="uid://cxqgv8yksrr1c" path="res://art/units/tank_base_spritesheet.png" id="1_dnokx"]
 [ext_resource type="Script" uid="uid://4eyppoa4iqpe" path="res://scripts/unit_tank.gd" id="1_m2syc"]
-[ext_resource type="Script" uid="uid://dbcq58stdfbw6" path="res://scripts/Jeep_Area2D.gd" id="2_m2syc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2syc"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(1014, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymx4"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(169, 0, 169, 124)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ju6pw"]
 atlas = ExtResource("1_dnokx")
-region = Rect2(169, 0, 169, 192)
+region = Rect2(338, 0, 169, 124)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ybent"]
+load_path = "res://.godot/imported/tank_base_spritesheet.png-b4702180c8e80a59a1f5f817f62b7854.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5uix"]
-atlas = ExtResource("1_dnokx")
+atlas = SubResource("CompressedTexture2D_ybent")
 region = Rect2(0, 0, 169, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stalu"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(1183, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpi4b"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(507, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cj2d"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(676, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybent"]
+atlas = ExtResource("1_dnokx")
+region = Rect2(845, 0, 169, 124)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fymx4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2syc")
+}],
+"loop": true,
+"name": &"tank_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fymx4")
+}],
+"loop": true,
+"name": &"tank_north",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ju6pw")
@@ -29,32 +71,74 @@ animations = [{
 "loop": true,
 "name": &"tank_north_west",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stalu")
+}],
+"loop": true,
+"name": &"tank_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpi4b")
+}],
+"loop": true,
+"name": &"tank_south_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cj2d")
+}],
+"loop": true,
+"name": &"tank_south_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybent")
+}],
+"loop": true,
+"name": &"tank_west",
+"speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_dnokx"]
+script/source = "extends Area2D
+
+func _input_event(viewport, event, shape_idx):
+	if event.is_action_pressed(\"left_click\"):
+		var parent = get_parent()
+		get_node(\"/root/Map/Player_Interface\").add_selected_unit(parent)
+		print(\"Tank Selected\")
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybent"]
-size = Vector2(168, 103)
+size = Vector2(168, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stalu"]
-size = Vector2(168, 103)
+size = Vector2(168, 115)
 
 [node name="unit_tank" type="CharacterBody2D"]
 script = ExtResource("1_m2syc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fymx4")
-animation = &"tank_north_west"
+animation = &"tank_north_east"
 
 [node name="Tank_Area2D" type="Area2D" parent="."]
 collision_layer = 512
 collision_mask = 0
-script = ExtResource("2_m2syc")
+script = SubResource("GDScript_dnokx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tank_Area2D"]
-position = Vector2(0, -12.5)
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_ybent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12.5)
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_stalu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

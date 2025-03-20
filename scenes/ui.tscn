@@ -1,7 +1,32 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7rcyeocyevfs"]
 
 [ext_resource type="Script" uid="uid://ce3qtewqfpw5i" path="res://scripts/SelectedUnitsGrid.gd" id="1_tf13g"]
-[ext_resource type="Script" uid="uid://xqko3166g1ek" path="res://scenes/Buildings.gd" id="2_w5qlq"]
+
+[sub_resource type="GDScript" id="GDScript_nt7q6"]
+script/source = "extends GridContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for i in 9:
+		var new_button = Button.new()
+		new_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		new_button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		new_button.focus_mode = Control.FOCUS_NONE
+		new_button.icon = preload(\"res://icon.svg\")
+		new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER  # Keep it centered
+		# Override theme properties to scale the icon properly
+		new_button.add_theme_constant_override(\"icon_max_width\", 64)  # Adjust width
+		new_button.add_theme_constant_override(\"icon_spacing\", 8)  # Adjust spacing
+		new_button.add_theme_constant_override(\"hseparation\", 4)  # Adjust horizontal separation
+		#new_button.modulate.a = 0  # Set alpha to 0 (fully transparent)
+		add_child(new_button)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="UI" type="CanvasLayer"]
 
@@ -30,7 +55,7 @@ layout_mode = 2
 [node name="Buildings" type="GridContainer" parent="PanelContainer/HBoxContainer/BuildingsPanelContainer"]
 layout_mode = 2
 columns = 3
-script = ExtResource("2_w5qlq")
+script = SubResource("GDScript_nt7q6")
 
 [node name="UnitsPanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buhiaddgffu4o"
-path="res://.godot/imported/Jeep_icon.png-bece2ad7403ef8c7f14702495fa6af60.ctex"
+uid="uid://bp8p4d2c8plmt"
+path="res://.godot/imported/tank_icon.png-fcd581f956f0eef5c479a98498d2126b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/icons/Jeep_icon.png"
-dest_files=["res://.godot/imported/Jeep_icon.png-bece2ad7403ef8c7f14702495fa6af60.ctex"]
+source_file="res://art/icons/tank_icon.png"
+dest_files=["res://.godot/imported/tank_icon.png-fcd581f956f0eef5c479a98498d2126b.ctex"]
 
 [params]
 

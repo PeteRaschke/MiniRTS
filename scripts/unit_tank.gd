@@ -28,12 +28,26 @@ func _physics_process(delta):
 		var next_path_position = navigation_agent_2d.get_next_path_position()
 		var angle_radians = atan2(click_position.y - position.y, click_position.x - position.x)
 		var angle_degrees = rad_to_deg(angle_radians)
+		if angle_degrees < 0:
+			angle_degrees = 360 + angle_degrees
+		print(angle_degrees)
 		
-		if angle_degrees > -135 and angle_degrees < -40:
-			$AnimatedSprite2D.play("tank_north_east")
-		else:
+		if angle_degrees > 337.5 or angle_degrees <= 22.5:
+			$AnimatedSprite2D.play("tank_east")
+		elif angle_degrees > 22.5 and angle_degrees <= 67.5:
+			$AnimatedSprite2D.play("tank_south_east")
+		elif angle_degrees > 67.5 and angle_degrees <= 112.5:
+			$AnimatedSprite2D.play("tank_south")
+		elif angle_degrees > 112.5 and angle_degrees <= 157.5:
+			$AnimatedSprite2D.play("tank_south_west")
+		elif angle_degrees > 157.5 and angle_degrees <= 202.5:
+			$AnimatedSprite2D.play("tank_west")
+		elif angle_degrees > 202.5 and angle_degrees <= 247.5:
 			$AnimatedSprite2D.play("tank_north_west")
-		
+		elif angle_degrees > 247.5 and angle_degrees <= 292.5:
+			$AnimatedSprite2D.play("tank_north")
+		elif angle_degrees > 292.5 and angle_degrees <= 337.5:
+			$AnimatedSprite2D.play("tank_north_east")
 			
 		var new_velocity = current_agent_position.direction_to(next_path_position) * speed
 		if navigation_agent_2d.avoidance_enabled:
