@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cylvrln6xcdb"]
+[gd_scene load_steps=9 format=3 uid="uid://cylvrln6xcdb"]
 
-[ext_resource type="Script" uid="uid://cmn5lejdaa18l" path="res://scripts/Player_Interface.gd" id="1_47ot2"]
+[ext_resource type="Script" uid="uid://cmn5lejdaa18l" path="res://scripts/ui/Player_Interface.gd" id="1_47ot2"]
 [ext_resource type="Script" uid="uid://duhov3u2f4tv0" path="res://scripts/Map.gd" id="1_wf6le"]
 [ext_resource type="PackedScene" uid="uid://b7rcyeocyevfs" path="res://scenes/ui.tscn" id="4_6thg7"]
 [ext_resource type="PackedScene" uid="uid://c12cjvbes85pm" path="res://scenes/rts_camera.tscn" id="5_ewo4x"]
+[ext_resource type="PackedScene" uid="uid://k2xkqmoxowbj" path="res://scenes/units/unit_tank_turret_basic.tscn" id="7_fws66"]
 [ext_resource type="PackedScene" uid="uid://ctrt80fg6dcyc" path="res://scenes/test_level_simple.tscn" id="8_hh0fu"]
-[ext_resource type="PackedScene" uid="uid://8qiv8whrrn4d" path="res://scenes/unit_tank.tscn" id="9_3m5ht"]
+[ext_resource type="PackedScene" uid="uid://8qiv8whrrn4d" path="res://scenes/units/unit_tank.tscn" id="9_3m5ht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imd0y"]
 
@@ -39,3 +40,6 @@ position = Vector2(11, -329)
 
 [node name="unit_tank" parent="." instance=ExtResource("9_3m5ht")]
 position = Vector2(380, 72)
+
+[node name="unit_tank_turret_basic" parent="." instance=ExtResource("7_fws66")]
+position = Vector2(594, 311)

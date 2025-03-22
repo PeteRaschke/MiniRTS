@@ -1,0 +1,241 @@
+[gd_scene load_steps=24 format=3 uid="uid://k2xkqmoxowbj"]
+
+[ext_resource type="Script" uid="uid://c0s3oh3frrr3l" path="res://scripts/units/unit_tank_turret_basic.gd" id="1_0c270"]
+[ext_resource type="Texture2D" uid="uid://bl7wsojyvkfuu" path="res://art/units/turret_basic.png" id="2_nboet"]
+[ext_resource type="Texture2D" uid="uid://cxqgv8yksrr1c" path="res://art/units/tank_base_spritesheet.png" id="2_x416l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqabm"]
+atlas = ExtResource("2_nboet")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0fkg"]
+atlas = ExtResource("2_nboet")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhqu8"]
+atlas = ExtResource("2_nboet")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akdfa"]
+atlas = ExtResource("2_nboet")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6mjm"]
+atlas = ExtResource("2_nboet")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqm64"]
+atlas = ExtResource("2_nboet")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tdyq"]
+atlas = ExtResource("2_nboet")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bty8j"]
+atlas = ExtResource("2_nboet")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eogmn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqabm")
+}],
+"loop": true,
+"name": &"turret_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0fkg")
+}],
+"loop": true,
+"name": &"turret_north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhqu8")
+}],
+"loop": true,
+"name": &"turret_north_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akdfa")
+}],
+"loop": true,
+"name": &"turret_north_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6mjm")
+}],
+"loop": true,
+"name": &"turret_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqm64")
+}],
+"loop": true,
+"name": &"turret_south_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tdyq")
+}],
+"loop": true,
+"name": &"turret_south_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bty8j")
+}],
+"loop": true,
+"name": &"turret_west",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2syc"]
+atlas = ExtResource("2_x416l")
+region = Rect2(1014, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymx4"]
+atlas = ExtResource("2_x416l")
+region = Rect2(169, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju6pw"]
+atlas = ExtResource("2_x416l")
+region = Rect2(338, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wlqq"]
+atlas = ExtResource("2_x416l")
+region = Rect2(0, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stalu"]
+atlas = ExtResource("2_x416l")
+region = Rect2(1183, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpi4b"]
+atlas = ExtResource("2_x416l")
+region = Rect2(507, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cj2d"]
+atlas = ExtResource("2_x416l")
+region = Rect2(676, 0, 169, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybent"]
+atlas = ExtResource("2_x416l")
+region = Rect2(845, 0, 169, 124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fymx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2syc")
+}],
+"loop": true,
+"name": &"tank_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fymx4")
+}],
+"loop": true,
+"name": &"tank_north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju6pw")
+}],
+"loop": true,
+"name": &"tank_north_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wlqq")
+}],
+"loop": true,
+"name": &"tank_north_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stalu")
+}],
+"loop": true,
+"name": &"tank_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpi4b")
+}],
+"loop": true,
+"name": &"tank_south_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cj2d")
+}],
+"loop": true,
+"name": &"tank_south_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybent")
+}],
+"loop": true,
+"name": &"tank_west",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybent"]
+size = Vector2(168, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stalu"]
+size = Vector2(168, 115)
+
+[node name="unit_tank" type="CharacterBody2D"]
+script = ExtResource("1_0c270")
+
+[node name="AnimatedSpriteTurret" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(7, -30)
+sprite_frames = SubResource("SpriteFrames_eogmn")
+animation = &"turret_west"
+frame_progress = 0.361552
+
+[node name="AnimatedSpriteBody" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 1)
+sprite_frames = SubResource("SpriteFrames_fymx4")
+animation = &"tank_south_west"
+
+[node name="Tank_Area2D" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank_Area2D"]
+position = Vector2(7, -2)
+shape = SubResource("RectangleShape2D_ybent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, -2)
+shape = SubResource("RectangleShape2D_stalu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 30.0
+debug_enabled = true

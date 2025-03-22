@@ -78,6 +78,11 @@ texture_region_size = Vector2i(64, 32)
 3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_uk5qd")
 4:1/0 = 0
 4:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rj7w5")
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ivvkf"]
 tile_shape = 1

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const NAME = "Tank"
+const NAME = "tank"
 const TYPE = 0 #0 == unit type
 var speed = 200.0
 var click_position = Vector2()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://8qiv8whrrn4d"]
 
 [ext_resource type="Texture2D" uid="uid://cxqgv8yksrr1c" path="res://art/units/tank_base_spritesheet.png" id="1_dnokx"]
-[ext_resource type="Script" uid="uid://4eyppoa4iqpe" path="res://scripts/unit_tank.gd" id="1_m2syc"]
+[ext_resource type="Script" uid="uid://4eyppoa4iqpe" path="res://scripts/units/unit_tank.gd" id="1_m2syc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2syc"]
 atlas = ExtResource("1_dnokx")
