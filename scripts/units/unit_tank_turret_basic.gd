@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 const NAME = "tank_turret_simple"
 const TYPE = 0 #0 == unit type
+var team = 0
 var speed = 200.0
+var health = 50
 var click_position = Vector2()
 var target_position = Vector2()
 var is_moving = false
 var is_targeting = false
+var current_target = null
+var can_attack = true
 
 @onready var navigation_agent_2d = $NavigationAgent2D
 
@@ -17,6 +21,9 @@ func _ready():
 	click_position = position
 
 func _physics_process(delta):
+	update_health()
+	auto_attack()
+	
 	var player_interface = get_node_or_null("/root/Map/Player_Interface")
 	if player_interface and self in player_interface.units_selected:
 		if Input.is_action_just_pressed("right_click"):
@@ -78,11 +85,50 @@ func _physics_process(delta):
 		if position.distance_to(click_position) < 3:
 			is_moving = false
 
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+	
+	if health >= 50:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+	if health <= 0:
+		$"../Player_Interface".all_units.remove(self)
+		self.queue_free()
+
+func auto_attack():
+	var distance_to_target
+	if current_target == null:
+		for unit in $"../Player_Interface".all_units:
+			if unit.team != team:
+				distance_to_target = sqrt(pow((unit.position.x - self.position.x),2) + pow((unit.position.y - self.position.y),2) )
+				print(distance_to_target)
+				if distance_to_target < 200:
+					is_targeting = true
+					current_target = unit
+	else:
+		distance_to_target = sqrt(pow((current_target.position.x - self.position.x), 2) + pow((current_target.position.y - self.position.y), 2))
+		if distance_to_target  < 200 and can_attack:
+			if current_target.health - 10 <= 0:
+				current_target.health -= 10
+				current_target = null
+				is_targeting = false
+			else:
+				current_target.health -= 10
+			$attack_cooldown.start()
+			can_attack = false
+		else:
+			current_target = null
+			is_targeting = false
 
 
 func getType():
 	return TYPE
 
-
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+
+
+func _on_attack_cooldown_timeout():
+	can_attack = true

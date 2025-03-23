@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 const NAME = "tank"
 const TYPE = 0 #0 == unit type
+var team = 1
 var speed = 200.0
+var health = 50
 var click_position = Vector2()
 var target_position = Vector2()
 var is_moving = false
@@ -16,6 +18,8 @@ func _ready():
 	click_position = position
 
 func _physics_process(delta):
+	update_health()
+	
 	var player_interface = get_node_or_null("/root/Map/Player_Interface")
 	if player_interface and self in player_interface.units_selected:
 		if Input.is_action_just_pressed("right_click"):
@@ -61,11 +65,20 @@ func _physics_process(delta):
 		if position.distance_to(click_position) < 3:
 			is_moving = false
 
-
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+	
+	if health >= 50:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+	if health <= 0:
+		$"../Player_Interface".all_units.remove(self)
+		self.queue_free()
 
 func getType():
 	return TYPE
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity

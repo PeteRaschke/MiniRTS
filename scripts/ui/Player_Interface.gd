@@ -44,7 +44,7 @@ func _process(delta):
 		if drag_box_rect.size > Vector2(2,2):
 			units_selected = [] 
 		for unit in all_units:
-			if drag_box_rect.has_point(unit.position):  # Check if the unit's position is within the drag box
+			if drag_box_rect.has_point(unit.position) and unit.team == 0:  # Check if the unit's position is within the drag box
 				add_multiple_units(unit)
 		$Dragbox.size = Vector2(0,0)
 		dragbox_active = false
