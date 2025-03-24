@@ -34,7 +34,6 @@ func _physics_process(delta):
 		var angle_degrees = rad_to_deg(angle_radians)
 		if angle_degrees < 0:
 			angle_degrees = 360 + angle_degrees
-		print(angle_degrees)
 		
 		if angle_degrees > 337.5 or angle_degrees <= 22.5:
 			$AnimatedSprite2D.play("tank_east")
@@ -74,8 +73,11 @@ func update_health():
 	else:
 		healthbar.visible = true
 	if health <= 0:
-		$"../Player_Interface".all_units.remove(self)
+		for unit in $"../Player_Interface".all_units:
+			if unit == self:
+				unit = null
 		self.queue_free()
+		
 
 func getType():
 	return TYPE

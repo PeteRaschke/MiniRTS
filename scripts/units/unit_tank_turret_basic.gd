@@ -23,6 +23,8 @@ func _ready():
 func _physics_process(delta):
 	update_health()
 	auto_attack()
+	if is_targeting and current_target != null:
+		aim_turret()
 	
 	var player_interface = get_node_or_null("/root/Map/Player_Interface")
 	if player_interface and self in player_interface.units_selected:
@@ -38,7 +40,6 @@ func _physics_process(delta):
 		var angle_degrees = rad_to_deg(angle_radians)
 		if angle_degrees < 0:
 			angle_degrees = 360 + angle_degrees
-		print(angle_degrees)
 		
 		if angle_degrees > 337.5 or angle_degrees <= 22.5:
 			$AnimatedSpriteBody.play("tank_east")
@@ -94,34 +95,59 @@ func update_health():
 	else:
 		healthbar.visible = true
 	if health <= 0:
-		$"../Player_Interface".all_units.remove(self)
+		for unit in $"../Player_Interface".all_units:
+			if unit == self:
+				unit = null
 		self.queue_free()
 
 func auto_attack():
 	var distance_to_target
+
 	if current_target == null:
 		for unit in $"../Player_Interface".all_units:
-			if unit.team != team:
+			if unit != null and unit.team != team:
 				distance_to_target = sqrt(pow((unit.position.x - self.position.x),2) + pow((unit.position.y - self.position.y),2) )
-				print(distance_to_target)
-				if distance_to_target < 200:
+				if distance_to_target < 500:
 					is_targeting = true
 					current_target = unit
 	else:
 		distance_to_target = sqrt(pow((current_target.position.x - self.position.x), 2) + pow((current_target.position.y - self.position.y), 2))
-		if distance_to_target  < 200 and can_attack:
+		if distance_to_target < 500 and can_attack:
 			if current_target.health - 10 <= 0:
 				current_target.health -= 10
 				current_target = null
-				is_targeting = false
 			else:
 				current_target.health -= 10
 			$attack_cooldown.start()
 			can_attack = false
-		else:
+		elif distance_to_target > 500:
 			current_target = null
-			is_targeting = false
 
+	if current_target == null:
+		is_targeting = false
+
+func aim_turret():
+	var angle_radians = atan2(current_target.position.y -  self.position.y, current_target.position.x - self.position.x)
+	var angle_degrees = rad_to_deg(angle_radians)
+	if angle_degrees < 0:
+		angle_degrees = 360 + angle_degrees
+		
+	if angle_degrees > 337.5 or angle_degrees <= 22.5:
+		$AnimatedSpriteTurret.play("turret_east")
+	elif angle_degrees > 22.5 and angle_degrees <= 67.5:
+		$AnimatedSpriteTurret.play("turret_south_east")
+	elif angle_degrees > 67.5 and angle_degrees <= 112.5:
+		$AnimatedSpriteTurret.play("turret_south")
+	elif angle_degrees > 112.5 and angle_degrees <= 157.5:
+		$AnimatedSpriteTurret.play("turret_south_west")
+	elif angle_degrees > 157.5 and angle_degrees <= 202.5:
+		$AnimatedSpriteTurret.play("turret_west")
+	elif angle_degrees > 202.5 and angle_degrees <= 247.5:
+		$AnimatedSpriteTurret.play("turret_north_west")
+	elif angle_degrees > 247.5 and angle_degrees <= 292.5:
+		$AnimatedSpriteTurret.play("turret_north")
+	elif angle_degrees > 292.5 and angle_degrees <= 337.5:
+		$AnimatedSpriteTurret.play("turret_north_east")
 
 func getType():
 	return TYPE
