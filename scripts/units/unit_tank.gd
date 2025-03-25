@@ -76,11 +76,27 @@ func update_health():
 		for unit in $"../Player_Interface".all_units:
 			if unit == self:
 				unit = null
-		self.queue_free()
+		$explosion.emitting = true
+		$AnimatedSprite2D.visible = false
+		var timer = Timer.new()
+		timer.wait_time = .5
+		timer.one_shot = true
+		add_child(timer)
+		timer.start()
+		timer.timeout.connect(_on_explosion_finnished)
 		
+		
+
+func _on_explosion_finnished():
+	self.queue_free()
 
 func getType():
 	return TYPE
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("left_click"):
+		get_node("/root/Map/Player_Interface").add_selected_unit(self)
+		print("Tank Selected")

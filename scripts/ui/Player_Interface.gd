@@ -22,7 +22,6 @@ func _process(delta):
 	elif dragbox_active:
 		var drag_end:Vector2 = get_global_mouse_position()
 		var size = drag_end - drag_start
-		print(drag_end - drag_start)
 		if size.x > 0 and size.y > 0:
 			$Dragbox.size = size
 		elif size.x > 0 and size.y < 0:

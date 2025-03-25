@@ -105,21 +105,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_dnokx"]
-script/source = "extends Area2D
-
-func _input_event(viewport, event, shape_idx):
-	if event.is_action_pressed(\"left_click\"):
-		var parent = get_parent()
-		get_node(\"/root/Map/Player_Interface\").add_selected_unit(parent)
-		print(\"Tank Selected\")
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybent"]
 size = Vector2(168, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stalu"]
 size = Vector2(168, 115)
+
+[sub_resource type="Curve" id="Curve_fao5q"]
+_data = [Vector2(0.0322581, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.337079), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="unit_tank" type="CharacterBody2D"]
 script = ExtResource("1_m2syc")
@@ -131,7 +125,6 @@ animation = &"tank_north_east"
 [node name="Tank_Area2D" type="Area2D" parent="."]
 collision_layer = 512
 collision_mask = 0
-script = SubResource("GDScript_dnokx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tank_Area2D"]
 position = Vector2(0, -6.5)
@@ -154,3 +147,18 @@ offset_right = 44.0
 offset_bottom = -63.0
 max_value = 50.0
 show_percentage = false
+
+[node name="explosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_fao5q")
+color = Color(0.219501, 0.219501, 0.219501, 1)

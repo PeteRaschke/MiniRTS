@@ -155,6 +155,10 @@ func getType():
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 
-
 func _on_attack_cooldown_timeout():
 	can_attack = true
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("left_click"):
+		get_node("/root/Map/Player_Interface").add_selected_unit(self)
+		print("Tank Selected")

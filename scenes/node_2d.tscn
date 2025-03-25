@@ -36,10 +36,13 @@ shape = SubResource("RectangleShape2D_imd0y")
 [node name="UI" parent="." instance=ExtResource("4_6thg7")]
 
 [node name="test_level_simple" parent="." instance=ExtResource("8_hh0fu")]
-position = Vector2(11, -329)
+position = Vector2(271, -411)
 
 [node name="unit_tank" parent="." instance=ExtResource("9_3m5ht")]
 position = Vector2(380, 72)
 
 [node name="unit_tank_turret_basic" parent="." instance=ExtResource("7_fws66")]
-position = Vector2(594, 311)
+position = Vector2(858, 386)
+
+[node name="unit_tank2" parent="." instance=ExtResource("7_fws66")]
+position = Vector2(991, 169)
